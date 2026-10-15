@@ -1,0 +1,10 @@
+---
+export interface Breadcrumb { label: string; href?: string; }
+interface Props { items: Breadcrumb[]; }
+const { items } = Astro.props;
+---
+<ol class="breadcrumb justify-content-center m-0">
+  {items.map((item) => <li class="breadcrumb-item" class:list={{ "text-white": !item.href }} aria-current={!item.href ? "page" : undefined}>
+    {item.href ? <a class="text-white" href={item.href}>{item.label}</a> : item.label}
+  </li>)}
+</ol>

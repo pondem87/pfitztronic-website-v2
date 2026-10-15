@@ -1,0 +1,28 @@
+---
+import SectionHeading from '../common/SectionHeading.astro';
+
+interface Stat { value: string; label: string; icon: string; }
+interface Props { stats: Stat[]; eyebrow?: string; title?: string; dark?: boolean; }
+const { stats, eyebrow = 'At a Glance', title, dark = false } = Astro.props;
+---
+<section class:list={['container-fluid rounded py-5 mt-4', dark ? 'bg-dark' : 'bg-white']}>
+  <div class="container py-4">
+    {title && <SectionHeading {eyebrow} {title} {dark} />}
+    <ul class="row g-4 list-unstyled mb-0">
+      {stats.map((stat) => (
+        <li class="col-md-6 col-lg-4">
+          <div class:list={['stat-card rounded p-4 h-100', dark ? 'bg-black' : 'bg-light']}>
+            <i class={`${stat.icon} fa-2x text-primary mb-3`} aria-hidden="true"></i>
+            <p class:list={['stat-value mb-1', dark && 'text-white']}>{stat.value}</p>
+            <p class:list={['mb-0', dark && 'text-white-50']}>{stat.label}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .stat-card { text-align: center; }
+  .stat-value { font: 600 clamp(2rem, 4vw, 3rem)/1.1 'Josefin Sans', sans-serif; }
+</style>

@@ -1,0 +1,47 @@
+---
+import { siteConfig } from '../../config';
+---
+<div class="container-fluid footer position-relative bg-dark text-white rounded-top py-5 mt-4 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container pt-5">
+        <div class="row g-5">
+            <div class="col-lg-6 pe-lg-5">
+                <a href="/" class="navbar-brand">
+                    <span class="h1 text-white font-josefin m-0">Pfitztronic</span>
+                </a>
+                <p>We do not only deploy technology solutions, but guide the organisation through the transformation required to support the technology.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-2"></i>{siteConfig.location}</p>
+                <p class="mb-2"><i class="fa fa-phone-alt text-primary me-2"></i><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phoneDisplay}</a></p>
+                <p><i class="fa fa-envelope text-primary me-2"></i><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
+                <div class="d-flex justify-content-start mt-4">
+                    <a class="btn btn-square btn-primary me-2" href={siteConfig.xUrl} aria-label="Pfitztronic on X"><i class="fab fa-x-twitter"></i></a>
+                    <a class="btn btn-square btn-primary me-2" href={siteConfig.facebookUrl} aria-label="Pfitztronic on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-square btn-primary me-2" href={siteConfig.linkedinUrl} aria-label="Pfitztronic on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <!-- <a class="btn btn-square btn-primary me-2" href="#"><i class="fab fa-instagram"></i></a> -->
+                </div>
+            </div>
+            <div class="col-lg-6 ps-lg-5">
+                <div class="row g-4">
+                    <div class="col-sm-6">
+                        <h4 class="text-white mb-4">Quick Links</h4>
+                        <a class="btn btn-link" href="/about/">About Us</a>
+                        <a class="btn btn-link" href="/contact/">Contact Us</a>
+                        <a class="btn btn-link" href="/services/">Our Services</a>
+                        <a class="btn btn-link" href="/privacy/">Privacy Policy</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4 class="text-white mb-4">Popular Links</h4>
+                        <a class="btn btn-link" href="/about/">About Us</a>
+                        <a class="btn btn-link" href="/contact/">Contact Us</a>
+                        <a class="btn btn-link" href="/services/">Our Services</a>
+                        <a class="btn btn-link" href="/faqs/">FAQs</a>
+                    </div>
+                    <div class="col-sm-12">
+                        <h4 class="text-white mb-4">Insights from Pfitztronic</h4>
+                        <p>Explore our latest articles on business architecture and technology.</p>
+                        <a class="btn btn-primary rounded-pill px-4" href="/blog/">Read our blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

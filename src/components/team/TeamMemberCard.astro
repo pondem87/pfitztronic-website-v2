@@ -1,0 +1,22 @@
+---
+import type { TeamMember } from '../../data/team';
+interface Props { item: TeamMember; index?: number; }
+const { item, index = 0 } = Astro.props;
+const delay = `${((index % 4) * 0.2 + 0.1).toFixed(1)}s`;
+---
+<div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay={delay}>
+    <div class="team-item">
+        <div class="position-relative overflow-hidden rounded mb-4">
+            <img class="img-fluid rounded w-100" src={item.image} alt="">
+            <div class="team-social position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+                <a class="btn btn-square btn-light text-primary mx-1" href=""><i class="fab fa-x-twitter"></i></a>
+                <a class="btn btn-square btn-light text-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-square btn-light text-primary mx-1" href=""><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="text-center border rounded p-4">
+            <h4>{item.name}</h4>
+            <span>{item.role}</span>
+        </div>
+    </div>
+</div>

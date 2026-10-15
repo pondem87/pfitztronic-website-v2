@@ -1,0 +1,15 @@
+---
+import TeamMemberCard from './TeamMemberCard.astro';
+import SectionHeading from '../common/SectionHeading.astro';
+import { members, type TeamMember } from '../../data/team';
+interface Props { items?: TeamMember[]; }
+const { items = members } = Astro.props;
+---
+<div class="container-fluid bg-white rounded py-5 mt-4">
+    <div class="container py-5">
+        <SectionHeading eyebrow="Team Members" title="The Team Driving Innovation" />
+        <div class="row g-4">
+            {items.map((item, index) => <TeamMemberCard item={item} index={index} />)}
+        </div>
+    </div>
+</div>

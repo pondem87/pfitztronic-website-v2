@@ -1,0 +1,30 @@
+---
+import SectionHeading from '../common/SectionHeading.astro';
+
+interface Role { title: string; description: string; type: string; location?: string; deadline?: string; applyHref?: string; }
+interface Props { roles: Role[]; eyebrow?: string; title?: string; }
+const { roles, eyebrow = 'Careers', title = 'Current Opportunities' } = Astro.props;
+---
+<section class="container-fluid bg-white rounded py-5 mt-4">
+  <div class="container py-4 py-lg-5">
+    <SectionHeading {eyebrow} {title} />
+    {roles.length ? <ul class="list-group list-group-flush careers-list">
+      {roles.map((role) => (
+        <li class="list-group-item px-0 py-4">
+          <div class="row g-3 align-items-center">
+            <div class="col-md">
+              <h3 class="h4 mb-2">{role.title}</h3>
+              <p class="text-body mb-3">{role.description}</p>
+              <div class="d-flex flex-wrap gap-3 text-body-secondary small">
+                <span><i class="fa fa-clock text-primary me-1" aria-hidden="true"></i>{role.type}</span>
+                {role.location && <span><i class="fa fa-location-dot text-primary me-1" aria-hidden="true"></i>{role.location}</span>}
+                {role.deadline && <span><i class="fa fa-calendar text-primary me-1" aria-hidden="true"></i>Apply by <time>{role.deadline}</time></span>}
+              </div>
+            </div>
+            {role.applyHref && <div class="col-md-auto"><a class="btn btn-primary rounded-pill px-4" href={role.applyHref}>Apply</a></div>}
+          </div>
+        </li>
+      ))}
+    </ul> : <p class="text-center mb-0">There are no open roles at this time.</p>}
+  </div>
+</section>

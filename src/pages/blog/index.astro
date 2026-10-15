@@ -1,0 +1,10 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import BlogSection from '../../components/blog/BlogSection.astro';
+import { getCollection } from 'astro:content';
+import { newestFirst } from '../../utils/blog';
+const posts = (await getCollection('blogs')).sort(newestFirst);
+---
+<PageLayout title="Blog" heroImage="/img/beautiful_people.jpg">
+  <BlogSection items={posts} />
+</PageLayout>

@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { blogUrl, formatBlogDate } from '../../utils/blog';
+interface Props { item: CollectionEntry<'blogs'>; index?: number; }
+const { item, index = 0 } = Astro.props;
+const post = item.data;
+const href = blogUrl(item);
+const delay = `${((index % 4) * 0.2 + 0.1).toFixed(1)}s`;
+---
+<div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay={delay}>
+    <div class="blog-item h-100">
+        <div class="position-relative overflow-hidden rounded mb-4">
+            <img class="img-fluid rounded w-100" src={post.image} alt={post.imageAlt} loading="lazy">
+            <div class="blog-btn position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+                <a class="btn btn-square btn-light text-primary" href={href} aria-label={`Read ${post.title}`}><i class="fa fa-link" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="border rounded p-4">
+            <h4 class="mb-3"><a class="text-dark" href={href}>{post.title}</a></h4>
+            <p>{post.description}</p>
+            <hr>
+            <p class="small mb-0"><i class="fa fa-user text-primary me-1" aria-hidden="true"></i>{post.author} | <i class="fa fa-calendar-alt text-primary me-1" aria-hidden="true"></i><time datetime={post.published.toISOString()}>{formatBlogDate(post.published)}</time></p>
+        </div>
+    </div>
+</div>

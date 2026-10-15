@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import AboutSection from '../components/about/AboutSection.astro';
+import FeaturesSection from '../components/features/FeaturesSection.astro';
+import ServicesSection from '../components/services/ServicesSection.astro';
+import ProcessSection from '../components/process/ProcessSection.astro';
+import CallToAction from '../components/home/CallToAction.astro';
+import BlogSection from '../components/blog/BlogSection.astro';
+import { getCollection } from 'astro:content';
+import { newestFirst } from '../utils/blog';
+import { approachFeatures } from '../data/approach';
+const posts = (await getCollection('blogs')).sort(newestFirst).slice(0, 4);
+---
+<BaseLayout>
+  <Hero />
+  <AboutSection />
+  <FeaturesSection
+    dark
+    eyebrow="Our Approach"
+    title="Business Clarity Before Technology"
+    image="/img/hands-put-together.jpg"
+    imageAlt="A team bringing their hands together to show collaboration"
+    items={approachFeatures}
+  />
+  <ProcessSection
+    eyebrow="How We Work"
+    title="A Clear Path from Challenge to Change"
+    steps={[
+      { title: 'Understand', icon: 'fa fa-magnifying-glass', description: 'Clarify your goals, customers, capabilities, and current challenges.' },
+      { title: 'Design', icon: 'fa fa-sitemap', description: 'Shape the business processes and technology around the outcomes you need.' },
+      { title: 'Deliver', icon: 'fa fa-gears', description: 'Implement practical improvements in manageable, prioritised steps.' },
+      { title: 'Improve', icon: 'fa fa-chart-line', description: 'Review results, learn from experience, and adapt as your business evolves.' },
+    ]}
+  />
+  <ServicesSection />
+  <CallToAction />
+  <BlogSection items={posts} />
+</BaseLayout>

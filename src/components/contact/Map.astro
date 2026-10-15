@@ -1,0 +1,6 @@
+---
+import { siteConfig } from '../../config';
+---
+<div class="container-fluid bg-white rounded p-4 mt-4">
+    <iframe class="w-100 rounded" src={siteConfig.mapUrl} title={`Map showing ${siteConfig.location}`} loading="lazy" style="height: 500px;" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>

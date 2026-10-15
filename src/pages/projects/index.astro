@@ -1,0 +1,29 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import ProjectsGrid from '../../components/projects/ProjectsGrid.astro';
+import { getImage } from 'astro:assets';
+import heroImage from '../../../public/img/projects/iot-hub/iot-hub-hero-img-1.png';
+import homeImage from '../../../public/img/projects/home-automation/hero_image_1_home_automation.jpg';
+const cover = await getImage({ src: heroImage, width: 640, format: 'webp' });
+const homeCover = await getImage({ src: homeImage, width: 640, format: 'webp' });
+---
+<PageLayout title="Projects" heroImage="/img/beautiful_people.jpg" description="Explore Pfitztronic projects: IoT Hub for equipment telemetry and control, and Home Automation for smart home accessories and coordinated installations." breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Projects' }]}>
+  <ProjectsGrid
+    title="Technology for Everyday Operations"
+    projects={[{
+      title: 'IoT Hub',
+      category: 'Live telemetry. Analytics. Control.',
+      image: cover.src,
+      imageAlt: 'Connected equipment inside an industrial control cabinet',
+      description: 'Industrial gateways, sensors, a cloud platform and a mobile app for boreholes, pumps, water tanks and industrial equipment. Built for farms, schools, hotels, lodges and industrial operations.',
+      href: '/projects/iot-hub/',
+    }, {
+      title: 'Home Automation',
+      category: 'Smart accessories. Coordinated living.',
+      image: homeCover.src,
+      imageAlt: 'Smart home accessories connected around a phone',
+      description: 'Smart home accessories and complete coordinated installations for homeowners. Bring lighting, access, audio and everyday controls together around the way you live.',
+      href: '/projects/home-automation/',
+    }]}
+  />
+</PageLayout>

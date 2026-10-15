@@ -1,0 +1,52 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import PricingSection from '../components/pricing/PricingSection.astro';
+
+interface Props { service: CollectionEntry<'services'>; }
+const { service: { data } } = Astro.props;
+---
+<BaseLayout title={`${data.title} | Pfitztronic`} description={data.description}>
+  <header class="container-fluid bg-dark rounded py-5 mt-4">
+    <div class="container py-lg-4">
+      <h1 class="display-5 text-white text-center mb-4">{data.title}</h1>
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: data.title }]} />
+    </div>
+  </header>
+  <div class="container-fluid bg-white rounded py-5 mt-4">
+    <div class="container">
+      <div class="row g-5">
+        <article class="col-lg-8">
+          <p class="lead mb-4">{data.description}</p>
+          <img class="service-image img-fluid w-100 rounded mb-4" src={data.image} alt={data.imageAlt} />
+          <div class="service-content"><slot /></div>
+        </article>
+        <aside class="col-lg-4">
+          <div class="bg-light rounded p-4">
+            <h2 class="h3 mb-3">Discuss your project</h2>
+            <p>Tell us about your objectives, current challenges, and priorities so we can discuss a suitable scope and next steps.</p>
+            <a href="/contact/" class="btn btn-primary rounded-pill px-4 py-2">Contact Us</a>
+          </div>
+          <a href="/services/" class="d-block mt-4">← View all services</a>
+        </aside>
+      </div>
+    </div>
+  </div>
+  {data.pricing && (
+    <PricingSection
+      eyebrow={data.pricing.eyebrow}
+      title={data.pricing.title}
+      currency={data.pricing.currency}
+      plans={data.pricing.plans}
+    />
+  )}
+</BaseLayout>
+
+<style>
+  .service-image { max-height: 24rem; object-fit: cover; }
+  .service-content { line-height: 1.8; overflow-wrap: anywhere; }
+  .service-content :global(h2), .service-content :global(h3) { margin-top: 2rem; margin-bottom: 1rem; }
+  .service-content :global(p), .service-content :global(ul), .service-content :global(ol) { margin-bottom: 1.5rem; }
+  .service-content :global(li) { margin-bottom: .5rem; }
+</style>

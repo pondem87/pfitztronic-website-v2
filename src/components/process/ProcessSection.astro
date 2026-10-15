@@ -1,0 +1,30 @@
+---
+import SectionHeading from '../common/SectionHeading.astro';
+
+interface Step { title: string; icon: string; description?: string; }
+interface Props { steps: Step[]; eyebrow?: string; title?: string; dark?: boolean; }
+const { steps, eyebrow = 'How It Works', title = 'From Idea to Impact', dark = true } = Astro.props;
+---
+<section class:list={['container-fluid rounded process-section py-5 mt-4', dark ? 'bg-dark' : 'bg-white']}>
+  <div class="container py-4 py-lg-5">
+    <SectionHeading {eyebrow} {title} {dark} />
+    <ol class="row g-4 list-unstyled mb-0">
+      {steps.map((step, index) => (
+        <li class="col-sm-6 col-lg-3">
+          <div class="process-card h-100 rounded p-4 text-center">
+            <span class="process-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <i class={`${step.icon} fa-3x text-primary mb-4`} aria-hidden="true"></i>
+            <h3 class:list={['h4', dark && 'text-white']}>{step.title}</h3>
+            {step.description && <p class:list={['mb-0', dark && 'text-white-50']}>{step.description}</p>}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process-card { position: relative; background: rgb(255 255 255 / 7%); }
+  .bg-white .process-card { background: var(--bs-light); }
+  .process-number { display: block; color: var(--bs-primary); font: 600 1rem 'Josefin Sans', sans-serif; margin-bottom: 1.25rem; }
+</style>

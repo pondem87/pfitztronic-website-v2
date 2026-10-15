@@ -1,0 +1,41 @@
+---
+import SectionHeading from '../common/SectionHeading.astro';
+
+interface Feature { label: string; included: boolean; }
+interface Plan { name: string; price: string; period?: string; description?: string; features: Feature[]; href?: string; featured?: boolean; }
+interface Props { plans: Plan[]; eyebrow?: string; title?: string; currency?: string; }
+const { plans, eyebrow = 'Pricing', title = 'Plans for Your Needs', currency = '' } = Astro.props;
+---
+<section class="container-fluid bg-white rounded py-5 mt-4">
+  <div class="container py-4 py-lg-5">
+    <SectionHeading {eyebrow} {title} />
+    <div class="row g-4">
+      {plans.map((plan) => (
+        <div class="col-md-6 col-lg-4">
+          <article class:list={['plan-card h-100 rounded p-4 p-lg-5', plan.featured ? 'plan-featured' : '']}>
+            <h3 class="h4">{plan.name}</h3>
+            {plan.description && <p>{plan.description}</p>}
+            <p class="plan-price mb-4"><span>{currency}</span>{plan.price}{plan.period && <small> / {plan.period}</small>}</p>
+            <ul class="list-unstyled mb-4">
+              {plan.features.map((feature) => (
+                <li class="d-flex gap-2 mb-3">
+                  <i class:list={[feature.included ? 'fa fa-check text-success' : 'fa fa-minus text-body-secondary']} aria-hidden="true"></i>
+                  <span>{feature.label}</span>
+                </li>
+              ))}
+            </ul>
+            {plan.href && <a class:list={['btn rounded-pill px-4 py-2', plan.featured ? 'btn-primary' : 'btn-dark']} href={plan.href}>Get in touch</a>}
+          </article>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .plan-card { border: 1px solid var(--bs-border-color); }
+  .plan-featured { border: 2px solid var(--bs-primary); box-shadow: 0 .5rem 2rem rgb(1 95 201 / 12%); }
+  .plan-price { color: var(--bs-dark); font: 600 clamp(2rem, 4vw, 3rem)/1.1 'Josefin Sans', sans-serif; }
+  .plan-price span { font-size: 1rem; vertical-align: top; }
+  .plan-price small { font: 400 1rem 'Open Sans', sans-serif; }
+</style>

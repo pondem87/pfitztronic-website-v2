@@ -1,0 +1,40 @@
+{
+  "name": "pfitztronic-website-v2",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/run-country.mjs bw dev",
+    "dev:bw": "node scripts/run-country.mjs bw dev",
+    "dev:zw": "node scripts/run-country.mjs zw dev",
+    "check": "node scripts/run-country.mjs bw check",
+    "build": "node scripts/run-country.mjs bw build",
+    "build:bw": "node scripts/run-country.mjs bw build",
+    "build:zw": "node scripts/run-country.mjs zw build",
+    "build:all": "npm run build:bw && npm run build:zw",
+    "verify": "node scripts/run-country.mjs bw verify",
+    "verify:bw": "node scripts/run-country.mjs bw verify",
+    "verify:zw": "node scripts/run-country.mjs zw verify",
+    "verify:all": "npm run verify:bw && npm run verify:zw",
+    "preview": "node scripts/run-country.mjs bw preview",
+    "preview:bw": "node scripts/run-country.mjs bw preview",
+    "preview:zw": "node scripts/run-country.mjs zw preview",
+    "test": "node --test tests/*.test.mjs",
+    "prepare:hosting": "node scripts/prepare-hosting.mjs",
+    "check:contact": "node scripts/check-contact-endpoint.mjs",
+    "deploy:bw": "node scripts/deploy.mjs bw",
+    "deploy:zw": "node scripts/deploy.mjs zw",
+    "smoke:bw": "node scripts/smoke-deployment.mjs bw",
+    "smoke:zw": "node scripts/smoke-deployment.mjs zw"
+  },
+  "dependencies": {
+    "astro": "6.4.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.4",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

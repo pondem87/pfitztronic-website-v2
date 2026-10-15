@@ -1,0 +1,11 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import PageHeader from '../components/common/PageHeader.astro';
+import type { Breadcrumb } from '../components/common/Breadcrumbs.astro';
+interface Props { title: string; description?: string; breadcrumbs?: Breadcrumb[]; heroImage?: string; }
+const { title, description, breadcrumbs, heroImage } = Astro.props;
+---
+<BaseLayout title={`${title} | Pfitztronic`} description={description}>
+  <PageHeader title={title} breadcrumbs={breadcrumbs} image={heroImage} />
+  <slot />
+</BaseLayout>

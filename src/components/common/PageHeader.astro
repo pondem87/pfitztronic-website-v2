@@ -1,0 +1,12 @@
+---
+import Breadcrumbs, { type Breadcrumb } from './Breadcrumbs.astro';
+interface Props { title: string; breadcrumbs?: Breadcrumb[]; image?: string; }
+const { title, image = '/img/page-header-1.jpg', breadcrumbs = [{ label: 'Home', href: '/' }, { label: 'Pages', href: '#' }, { label: title }] } = Astro.props;
+---
+<div class="container-fluid page-header position-relative rounded overflow-hidden py-5 mt-4 wow fadeInUp" data-wow-delay="0.1s">
+  <img class="img-fluid" src={image} alt="" />
+  <div class="container text-center py-5">
+    <h1 class="display-1 text-white">{title}</h1>
+    <Breadcrumbs items={breadcrumbs} />
+  </div>
+</div>

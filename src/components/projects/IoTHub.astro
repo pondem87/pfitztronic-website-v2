@@ -1,0 +1,280 @@
+---
+import { siteConfig } from "../../config";
+import IoTHero from "./IoTHero.astro";
+import IoTEquipmentCard from "./EquipmentCard.astro";
+import pusr from "../../../public/img/projects/iot-hub/pusr-m100.png";
+import eg8200 from "../../../public/img/projects/iot-hub/EG8200.jpg";
+import hydrostatic from "../../../public/img/projects/iot-hub/hydrostatic-level-sensor.jpg";
+import ultrasonic from "../../../public/img/projects/iot-hub/ultrasound-level-sensor.jpg";
+import meter from "../../../public/img/projects/iot-hub/multijet-water-meter-with-modbus.png";
+import opta from "../../../public/img/projects/iot-hub/arduino-opta-plc.png";
+import waterValve from "../../../public/img/projects/iot-hub/actuated-water-valve.jpg";
+import butterflyValve from "../../../public/img/projects/iot-hub/electric-butterfly-valve.jpg";
+
+
+const gateways = [
+  {
+    name: "PUSR USR-M100 series", category: "IoT gateway", image: pusr,
+    alt: "PUSR USR-M100 gateway with labelled Ethernet, serial and input/output connections",
+    description: "Connect field instruments and equipment to IoT Hub with a gateway from the USR-M100 family, including the USR-M100i. The model and interfaces are selected for your installation.",
+  },
+  {
+    name: "IOTRouter EG8200", category: "Edge gateway", image: eg8200,
+    alt: "IOTRouter EG8200 industrial gateway with terminals and an external antenna",
+    description: "Bring measurements from compatible equipment into a connected site. Gateway configuration is matched to the devices, communications and control needs of your system.",
+  },
+];
+const sensors = [
+  {
+    name: "Hydrostatic level sensor", category: "Water level", image: hydrostatic,
+    alt: "Submersible hydrostatic water level probe with a coiled cable",
+    description: "Measure water level with a submerged probe, giving you visibility into the water stored in tanks or available in a borehole.",
+  },
+  {
+    name: "Ultrasonic level sensor", category: "Water level", image: ultrasonic,
+    alt: "Two ultrasonic level sensors with blue housings and local displays",
+    description: "Monitor tank levels from above the water surface using a non-contact sensor, selected to suit the tank and installation.",
+  },
+  {
+    name: "Modbus water meter", category: "Water consumption", image: meter,
+    alt: "Multijet water meters in different sizes with wired communications",
+    description: "Bring metered water usage into your dashboard to understand consumption across supply lines, buildings and distribution points.",
+  },
+];
+const controls = [
+  {
+    name: "Arduino Opta PLC", category: "Local control", image: opta,
+    alt: "Arduino Opta programmable logic controller with relay and input terminals",
+    description: "Add a local controller for equipment logic and switching, configured around your pumps, sensors and operating requirements.",
+  },
+  {
+    name: "Actuated water valve", category: "Water distribution", image: waterValve,
+    alt: "Water valve with a blue electric actuator and connection cable",
+    description: "Open or close a water line through an electric actuator, integrated with the controls for your water distribution system.",
+  },
+  {
+    name: "Electric butterfly valve", category: "Pipeline control", image: butterflyValve,
+    alt: "Blue butterfly valve with a white electric actuator mounted above it",
+    description: "Control flow through a compatible pipeline with an electrically operated butterfly valve, sized for your installation.",
+  },
+];
+const applications = [
+  { icon: "seedling", title: "Farms & irrigation", text: "Monitor boreholes, storage and pumping to plan water distribution around what is available." },
+  { icon: "school", title: "Schools & campuses", text: "Keep facilities teams informed about backup water storage and supply across buildings." },
+  { icon: "hotel", title: "Hotels & lodges", text: "See tank levels and consumption across the water systems your guests depend on." },
+  { icon: "industry", title: "Industrial operations", text: "Bring compatible machinery and process measurements into a shared operational view." },
+];
+---
+
+<div class="iot-page rounded mt-4">
+  <nav class="container iot-breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span aria-hidden="true">/</span>
+    <a href="/projects/">Projects</a><span aria-hidden="true">/</span>
+    <span aria-current="page">IoT Hub</span>
+  </nav>
+
+  <IoTHero />
+
+  <nav class="iot-section-nav" aria-label="On this page">
+    <div class="container">
+      <a href="#iot-solution">The solution</a>
+      <a href="#iot-gateways">Gateways</a>
+      <a href="#iot-sensors">Sensors & meters</a>
+      <a href="#iot-control">Control & actuators</a>
+      <a href="#iot-platform">Cloud & mobile</a>
+    </div>
+  </nav>
+
+  <section id="iot-solution" class="iot-section" aria-labelledby="solution-title">
+    <div class="container">
+      <div class="iot-introduction">
+        <div>
+          <p class="iot-eyebrow">The complete picture</p>
+          <h2 id="solution-title">From your equipment<br />to your fingertips.</h2>
+        </div>
+        <p class="iot-lead">IoT Hub brings industrial hardware, a cloud platform and a mobile app together. Monitor boreholes, pumps, water tanks and machinery, understand the data, and control connected equipment from wherever you work.</p>
+      </div>
+      <ol class="iot-steps">
+        <li><span class="step-number">01</span><h3>Measure</h3><p>Sensors and meters capture water levels, flow and equipment measurements.</p></li>
+        <li><span class="step-number">02</span><h3>Connect</h3><p>Industrial gateways bring field data into the cloud through the interfaces your site needs.</p></li>
+        <li><span class="step-number">03</span><h3>Act</h3><p>Use live telemetry, historical trends and connected controls to inform your next move.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="iot-gateways" class="iot-section iot-tinted" aria-labelledby="gateways-title">
+    <div class="container">
+      <div class="iot-section-heading">
+        <p class="iot-eyebrow">01 / Connect your site</p>
+        <h2 id="gateways-title">Industrial IoT gateways.</h2>
+        <p>The link between your equipment and the cloud. We select and configure the gateway around your site's instruments and connectivity.</p>
+      </div>
+      <div class="iot-equipment-grid iot-gateway-grid">
+        {gateways.map((equipment) => <IoTEquipmentCard {...equipment} />)}
+      </div>
+      <div class="iot-interface-note">
+        <span>Built around industrial interfaces</span>
+        <p>Modbus and 4–20 mA integration, with compatible gateway I/O or interface modules selected for each installation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="iot-sensors" class="iot-section" aria-labelledby="sensors-title">
+    <div class="container">
+      <div class="iot-section-heading">
+        <p class="iot-eyebrow">02 / Measure what matters</p>
+        <h2 id="sensors-title">Sensors & water meters.</h2>
+        <p>See how much water you have, where it is moving and how it is being used. Choose instruments that fit the job.</p>
+      </div>
+      <div class="iot-equipment-grid">
+        {sensors.map((equipment) => <IoTEquipmentCard {...equipment} />)}
+      </div>
+      <p class="iot-additional-note">Need flow measurements? Ultrasonic flow sensors can also form part of your installation, selected to suit the pipework and measurement requirements.</p>
+    </div>
+  </section>
+
+  <section id="iot-control" class="iot-section iot-section-divider" aria-labelledby="control-title">
+    <div class="container">
+      <div class="iot-section-heading">
+        <p class="iot-eyebrow">03 / Put insight into action</p>
+        <h2 id="control-title">Controllers & actuators.</h2>
+        <p>Bring local control and remote operation together. Controllers and valves are integrated with the equipment and operating logic at your site.</p>
+      </div>
+      <div class="iot-equipment-grid">
+        {controls.map((equipment) => <IoTEquipmentCard {...equipment} />)}
+      </div>
+    </div>
+  </section>
+
+  <section id="iot-platform" class="iot-section iot-platform" aria-labelledby="platform-title">
+    <div class="container iot-platform-grid">
+      <div class="iot-platform-intro">
+        <p class="iot-eyebrow">One view of your operations</p>
+        <h2 id="platform-title">In the cloud.<br />On your phone.</h2>
+        <p>Hardware is only part of the solution. The IoT Hub cloud platform and mobile app put equipment data and controls within reach of the people who need them.</p>
+        <a class="iot-inline-link" href="#iot-contact">Plan your connected system <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="iot-features">
+        <article><i class="fas fa-satellite-dish" aria-hidden="true"></i><div><h3>Live telemetry</h3><p>Check tank levels, flow readings and equipment status from your connected sites.</p></div></article>
+        <article><i class="fas fa-chart-line" aria-hidden="true"></i><div><h3>Analytics & trends</h3><p>Review historical measurements to understand usage patterns and changes in operation.</p></div></article>
+        <article><i class="fas fa-sliders" aria-hidden="true"></i><div><h3>Equipment control</h3><p>Operate compatible connected equipment, with control functions configured for your installation.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="iot-section" aria-labelledby="applications-title">
+    <div class="container">
+      <div class="iot-section-heading">
+        <p class="iot-eyebrow">Made for everyday operations</p>
+        <h2 id="applications-title">Where IoT Hub fits.</h2>
+        <p>From farm water distribution to backup supplies and industrial machinery.</p>
+      </div>
+      <div class="iot-applications">
+        {applications.map(({ icon, title, text }) => (
+          <article><i class={`fas fa-${icon}`} aria-hidden="true"></i><h3>{title}</h3><p>{text}</p></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="iot-contact" class="iot-contact-section" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="iot-contact-panel">
+        <p class="iot-eyebrow">Start with your site</p>
+        <h2 id="contact-title">What would you like to connect?</h2>
+        <p>Tell us about your equipment, your sites and what you want to monitor or control. We'll help you plan the hardware and software around your operation.</p>
+        <div class="iot-contact-actions">
+          <a class="iot-button" href="/contact/">Talk to our team <span aria-hidden="true">→</span></a>
+          <a class="iot-email" href={`mailto:${siteConfig.email}?subject=${encodeURIComponent("IoT Hub project enquiry")}`}>Email about IoT Hub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .iot-page { color: #536575; background: #fff; }
+  .iot-page h2, .iot-page h3 { color: var(--bs-dark); }
+  .iot-page h2 { font-size: clamp(2rem, 3vw, 2.85rem); line-height: 1.2; letter-spacing: -.025em; margin: 0 0 24px; }
+  .iot-page h3 { font-size: 1.35rem; line-height: 1.35; margin: 0 0 16px; }
+  .iot-page p { line-height: 1.85; }
+  .iot-page a:focus-visible { outline: 3px solid var(--bs-primary); outline-offset: 5px; }
+  .iot-page section[id] { scroll-margin-top: 120px; }
+  .iot-breadcrumb { display: flex; gap: 14px; align-items: center; padding-top: 20px; padding-bottom: 20px; font-size: .78rem; }
+  .iot-breadcrumb a { color: #536575; }
+  .iot-breadcrumb a:hover { color: var(--bs-primary); }
+  .iot-section-nav { border-bottom: 1px solid #e4e9ed; }
+  .iot-section-nav .container { display: flex; flex-wrap: wrap; gap: 12px 40px; padding-top: 24px; padding-bottom: 24px; }
+  .iot-section-nav a { color: #405665; font-size: .85rem; padding: 8px 0; }
+  .iot-section-nav a:hover { color: var(--bs-primary); text-decoration: underline; text-underline-offset: 6px; }
+  .iot-section { padding: 120px 0; }
+  .iot-eyebrow { color: var(--bs-primary); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; margin: 0 0 20px; }
+  .iot-section-heading { margin-bottom: 64px; }
+  .iot-section-heading > p:last-child { font-size: 1.02rem; margin-bottom: 0; }
+  .iot-introduction { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 72px; }
+  .iot-introduction h2 { margin-bottom: 0; }
+  .iot-lead { font-size: 1.08rem; margin: 0; }
+  .iot-steps { list-style: none; padding: 0; margin: 72px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; }
+  .iot-steps li { border-top: 1px solid #dbe4e8; padding-top: 28px; }
+  .step-number { display: block; color: var(--bs-primary); font-size: .78rem; margin-bottom: 22px; }
+  .iot-steps p { font-size: .94rem; margin: 0; }
+  .iot-tinted { background: var(--bs-light); }
+  .iot-equipment-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px 36px; }
+  .iot-gateway-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; }
+  .iot-interface-note { margin-top: 56px; padding-top: 28px; border-top: 1px solid #dbe4e8; display: grid; grid-template-columns: 1fr 1.5fr; gap: 28px; }
+  .iot-interface-note span { color: var(--bs-dark); font-weight: 600; font-size: .9rem; }
+  .iot-interface-note p { font-size: .88rem; margin: 0; }
+  .iot-additional-note { border-left: 2px solid var(--bs-primary); padding-left: 24px; margin: 56px 0 0; max-width: 850px; font-size: .9rem; }
+  .iot-section-divider { border-top: 1px solid #e4e9ed; }
+  .iot-platform { background: var(--bs-light); }
+  .iot-platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+  .iot-platform-intro > p:not(.iot-eyebrow) { max-width: 450px; }
+  .iot-inline-link { display: inline-block; color: var(--bs-primary); font-weight: 600; font-size: .9rem; margin-top: 16px; }
+  .iot-inline-link span { margin-left: 12px; }
+  .iot-inline-link:hover { color: var(--bs-dark); text-decoration: underline; }
+  .iot-features { display: grid; gap: 36px; }
+  .iot-features article { display: flex; gap: 24px; padding-bottom: 36px; border-bottom: 1px solid #d4e3dc; }
+  .iot-features article:last-child { border: 0; padding-bottom: 0; }
+  .iot-features i { color: var(--bs-primary); font-size: 1.35rem; margin-top: 5px; width: 28px; flex-shrink: 0; }
+  .iot-features h3 { font-size: 1.2rem; margin-bottom: 12px; }
+  .iot-features p { margin: 0; font-size: .94rem; }
+  .iot-applications { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 36px; }
+  .iot-applications article { border-top: 1px solid #dbe4e8; padding-top: 32px; }
+  .iot-applications i { color: var(--bs-primary); font-size: 1.5rem; margin-bottom: 24px; }
+  .iot-applications h3 { font-size: 1.2rem; }
+  .iot-applications p { margin: 0; font-size: .92rem; }
+  .iot-contact-section { padding-bottom: 120px; }
+  .iot-contact-panel { padding: 80px 48px; text-align: center; background: var(--bs-dark); border-radius: 8px; }
+  .iot-contact-panel .iot-eyebrow { color: var(--bs-white); }
+  .iot-contact-panel h2 { color: #fff; }
+  .iot-contact-panel > p:not(.iot-eyebrow) { color: #d3e1e7; max-width: 650px; margin: 0 auto; }
+  .iot-contact-actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 24px 36px; margin-top: 36px; }
+  .iot-button { display: inline-flex; align-items: center; gap: 24px; background: var(--bs-primary); color: var(--bs-white); padding: 16px 24px; border-radius: 4px; font-weight: 600; font-size: .9rem; }
+  .iot-button:hover { background: var(--bs-primary); }
+  .iot-email { color: #fff; font-size: .9rem; }
+  .iot-email:hover { color: var(--bs-white); }
+  .iot-contact-actions a:focus-visible { outline-color: var(--bs-white); }
+  @media (max-width: 991px) {
+    .iot-section { padding: 88px 0; }
+    .iot-introduction, .iot-platform-grid { grid-template-columns: 1fr; gap: 36px; }
+    .iot-introduction { max-width: 680px; }
+    .iot-equipment-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 28px; }
+    .iot-steps { gap: 28px; margin-top: 56px; }
+    .iot-applications { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+    .iot-platform-intro > p:not(.iot-eyebrow) { max-width: 650px; }
+    .iot-section-heading { margin-bottom: 48px; }
+    .iot-contact-section { padding-bottom: 88px; }
+  }
+  @media (max-width: 575px) {
+    .iot-section { padding: 72px 0; }
+    .iot-section-nav .container { gap: 8px 24px; padding-top: 16px; padding-bottom: 16px; }
+    .iot-section-nav a { font-size: .78rem; }
+    .iot-steps, .iot-equipment-grid, .iot-applications, .iot-interface-note { grid-template-columns: 1fr; }
+    .iot-steps { gap: 36px; }
+    .iot-equipment-grid { gap: 56px; }
+    .iot-interface-note { gap: 16px; margin-top: 40px; }
+    .iot-lead { font-size: 1rem; }
+    .iot-contact-panel { padding: 56px 24px; }
+    .iot-contact-section { padding-bottom: 72px; }
+  }
+</style>

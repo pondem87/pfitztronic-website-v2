@@ -1,0 +1,15 @@
+---
+import TestimonialCard from './TestimonialCard.astro';
+import SectionHeading from '../common/SectionHeading.astro';
+import { testimonials, type Testimonial } from '../../data/testimonials';
+interface Props { items?: Testimonial[]; dark?: boolean; }
+const { items = testimonials, dark = false } = Astro.props;
+---
+<div class:list={["container-fluid testimonial rounded py-5 mt-4", dark ? "bg-dark" : "bg-white"]}>
+    <div class="container py-5">
+        <SectionHeading eyebrow="Testimonial" title="What Our Clients Say" dark={dark} />
+        <div class="row g-4">
+            {items.map((item, index) => <TestimonialCard item={item} index={index} dark={dark} />)}
+        </div>
+    </div>
+</div>

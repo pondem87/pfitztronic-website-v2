@@ -1,0 +1,8 @@
+---
+interface Props { eyebrow: string; title: string; dark?: boolean; }
+const { eyebrow, title, dark = false } = Astro.props;
+---
+<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+  <p class="font-lora fs-5 text-primary">{eyebrow}</p>
+  <h1 class:list={["display-5 mb-5", { "text-white": dark }]}>{title}</h1>
+</div>

@@ -1,0 +1,16 @@
+---
+import ServiceCard from './ServiceCard.astro';
+import SectionHeading from '../common/SectionHeading.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getServices } from '../../utils/services';
+interface Props { items?: CollectionEntry<'services'>[]; }
+const items = Astro.props.items ?? await getServices();
+---
+<div class="container-fluid bg-white rounded py-5 mt-4">
+    <div class="container py-5">
+        <SectionHeading eyebrow="Our Services" title="What We Do Best" />
+        <div class="row g-4">
+            {items.map((item, index) => <ServiceCard item={item} index={index} />)}
+        </div>
+    </div>
+</div>

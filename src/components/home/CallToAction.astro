@@ -1,0 +1,24 @@
+---
+import ContactForm from '../contact/ContactForm.astro';
+---
+<div class="container-fluid call-to-action bg-dark rounded py-5 mt-4">
+    <div class="container py-5">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <p class="font-lora fs-5 text-primary">Call to Action</p>
+            <h1 class="display-5 text-white mb-5">Let’s Turn Ideas Into Action</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+                <div class="position-relative h-100">
+                    <img class="img-fluid rounded w-100 h-100" style="object-fit: cover;" src="/img/contact-us.jpg" alt="A business consultant discussing a project with a client">
+                </div>
+            </div>
+            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
+                <div class="h-100">
+                    <h4 class="text-white lh-base mb-4">Have a business challenge or project in mind? Send us a message and let’s explore how we can help.</h4>
+                    <ContactForm idPrefix="home-contact" dark />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

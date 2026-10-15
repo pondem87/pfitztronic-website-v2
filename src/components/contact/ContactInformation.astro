@@ -1,0 +1,34 @@
+---
+import { siteConfig } from '../../config';
+---
+<div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+    <p class="font-lora fs-5 text-primary">Contact Pfitztronic</p>
+    <h1 class="display-5 mb-4">Let’s start with your business challenge.</h1>
+    <p class="fs-5 lh-base mb-4">Tell us what you are working towards, where complexity is getting in the way, and what a better outcome would look like. We can help clarify the business need and the right next steps.</p>
+    <div class="bg-light rounded p-4 mb-4">
+        <h2 class="h4 mb-3">Pfitztronic {siteConfig.countryName}</h2>
+        <p><i class="fa fa-map-marker-alt text-primary me-2" aria-hidden="true"></i>{siteConfig.location}</p>
+        <p><a href={`tel:${siteConfig.phoneHref}`}><i class="fa fa-phone text-primary me-2" aria-hidden="true"></i>{siteConfig.phoneDisplay}</a></p>
+        <p class="mb-0"><a href={`mailto:${siteConfig.email}`}><i class="fa fa-envelope text-primary me-2" aria-hidden="true"></i>{siteConfig.email}</a></p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="bg-light rounded h-100 p-4">
+                <h5><i class="fa fa-bullseye text-primary me-2"></i>Your objectives</h5>
+                <p class="mb-0">What do you need the organisation to achieve?</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="bg-light rounded h-100 p-4">
+                <h5><i class="fa fa-diagram-project text-primary me-2"></i>Your challenge</h5>
+                <p class="mb-0">Where do processes, customer experience, or technology need to work better?</p>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="bg-light rounded p-4">
+                <h5><i class="fa fa-route text-primary me-2"></i>Your next step</h5>
+                <p class="mb-0">Share your priorities and we can identify a practical way to move forward.</p>
+            </div>
+        </div>
+    </div>
+</div>

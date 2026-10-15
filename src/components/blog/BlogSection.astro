@@ -1,0 +1,16 @@
+---
+import BlogCard from './BlogCard.astro';
+import SectionHeading from '../common/SectionHeading.astro';
+import type { CollectionEntry } from 'astro:content';
+interface Props { items: CollectionEntry<'blogs'>[]; }
+const { items } = Astro.props;
+---
+<div class="container-fluid bg-white rounded py-5 mt-4">
+    <div class="container py-5">
+        <SectionHeading eyebrow="Blog Post" title="From Our Blog" />
+        <div class="row g-4">
+            {items.map((item, index) => <BlogCard item={item} index={index} />)}
+        </div>
+        {items.length === 0 && <p class="text-center mb-0">No blog posts have been published yet.</p>}
+    </div>
+</div>

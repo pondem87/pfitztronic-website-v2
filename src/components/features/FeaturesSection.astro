@@ -1,0 +1,26 @@
+---
+import FeatureCard from './FeatureCard.astro';
+import SectionHeading from '../common/SectionHeading.astro';
+import { features, type Feature } from '../../data/features';
+interface Props { items?: Feature[]; dark?: boolean; eyebrow?: string; title?: string; image?: string; imageAlt?: string; }
+const { items = features, dark = false, eyebrow = 'Our Features', title = 'Built for Better Results', image = '/img/feature.jpg', imageAlt = '' } = Astro.props;
+---
+<div class:list={["container-fluid feature rounded py-5 mt-4", dark ? "bg-dark" : "bg-white"]}>
+    <div class="container py-5">
+        <SectionHeading {eyebrow} {title} dark={dark} />
+        <div class="row g-4">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="position-relative h-100">
+                    <img class="img-fluid rounded w-100 h-100" style="object-fit: cover;" src={image} alt={imageAlt}>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="feature-items h-100">
+                    <div class="row g-4 h-100">
+                        {items.map((item, index) => <FeatureCard item={item} index={index} dark={dark} />)}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

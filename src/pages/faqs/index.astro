@@ -1,0 +1,37 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import FaqSection from '../../components/faq/FaqSection.astro';
+const items = [
+  {
+    "question": "What is Business Architecture?",
+    "answer": "Business Architecture provides a clear view of how your organisation works and how its different parts fit together. It connects your strategy, customers, products and services, capabilities, processes, information, and people so that business decisions can be made with a better understanding of their wider impact. In practical terms, Business Architecture helps answer questions such as: What capabilities do we need? Where are our inefficiencies? What should we improve first? And how do we make sure our investments support our business goals?"
+  },
+  {
+    "question": "What is Enterprise Architecture?",
+    "answer": "Enterprise Architecture looks at the organisation as a complete system and helps align the business with its information, applications, technology, and infrastructure. It provides a structured approach for deciding how technology should support the organisation, reducing unnecessary complexity and ensuring that systems can work together effectively. Enterprise Architecture is particularly useful when introducing new software, integrating systems, modernising operations, or planning digital transformation."
+  },
+  {
+    "question": "Why do small businesses need Enterprise and Business Architecture?",
+    "answer": "Enterprise and Business Architecture are not only for large corporations. Small businesses often have limited resources, which makes it even more important to invest them wisely. We help SMEs understand how their business currently operates, identify unnecessary costs and inefficiencies, clarify what capabilities are needed for growth, and determine where technology can create genuine value. The goal is not to introduce unnecessary complexity. It is to provide just enough architecture to help your business make better decisions, scale sustainably, and avoid expensive systems or technology investments that do not solve the right problems."
+  },
+  {
+    "question": "Can you help us with an ERP?",
+    "answer": "Yes. We can help you determine whether an ERP system is actually the right solution for your business before you make a significant investment. We can analyse your requirements, business processes, information needs, and existing systems; help you evaluate suitable ERP platforms; assist with implementation planning and process redesign; and support integration with other systems. Where appropriate, we can also recommend a more focused solution instead of a full ERP if that would provide better value for your organisation."
+  },
+  {
+    "question": "Can you develop an online portal?",
+    "answer": "Yes. We can design and develop online portals and custom software solutions tailored to your organisation's needs. This may include customer portals, employee portals, supplier portals, booking systems, dashboards, workflow systems, reporting platforms, and other web-based business applications. Our approach begins with understanding the business problem and user needs before developing the technology. This helps ensure that the portal improves the way your organisation works rather than simply digitising an inefficient process."
+  },
+  {
+    "question": "How can you help our SME become more efficient and more profitable?",
+    "answer": "We start by understanding how your business creates value for its customers and how work moves through the organisation. We can help identify bottlenecks, duplicated work, unnecessary costs, manual processes, poor information flow, customer experience problems, and opportunities for automation. From there, we can help redesign processes, clarify roles and capabilities, improve the use of information, introduce appropriate technology, and develop a practical improvement roadmap. Our focus is not technology for its own sake. The objective is to help your business reduce waste, improve productivity, serve customers better, make better decisions, and create the capacity for sustainable growth and profitability."
+  },
+  {
+    "question": "What is Customer Experience Design?",
+    "answer": "Customer Experience Design is the deliberate process of improving how customers experience your business across every interaction \u2014 from first discovering your organisation to purchasing, receiving support, using your product or service, and returning in the future. We examine the customer journey, identify frustrations and unmet needs, and redesign interactions so they are simpler, more convenient, consistent, and valuable. Good customer experience design can help your organisation improve customer satisfaction, loyalty, referrals, conversion rates, and long-term customer value while also making internal operations more efficient."
+  }
+];
+---
+<PageLayout title="FAQs" heroImage="/img/beautiful_people.jpg" breadcrumbs={[{label:'Home',href:'/'},{label:'FAQs'}]}>
+  <FaqSection questions={items} />
+</PageLayout>

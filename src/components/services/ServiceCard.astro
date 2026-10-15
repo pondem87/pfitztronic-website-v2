@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { serviceUrl } from '../../utils/services';
+interface Props { item: CollectionEntry<'services'>; index?: number; }
+const { item, index = 0 } = Astro.props;
+const service = item.data;
+const href = serviceUrl(item);
+const delay = `${((index % 4) * 0.2 + 0.1).toFixed(1)}s`;
+---
+<div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay={delay}>
+    <div class:list={["service-item rounded p-4 h-100", index % 2 ? "bg-light" : "bg-white border"]}>
+        <h4 class="mb-4"><span class="font-lora text-primary me-1">{String(index + 1).padStart(2, "0")}.</span><a href={href} class="text-dark">{service.title}</a></h4>
+        <div class="overflow-hidden rounded mb-4">
+            <img class="img-fluid w-100" src={service.image} alt={service.imageAlt} loading="lazy">
+        </div>
+        <p class="mb-0">{service.description}</p>
+        <hr>
+        <a class="font-lora text-primary" href={href} aria-label={`Read more about ${service.title}`}><i class="bi bi-arrow-right-circle me-2" aria-hidden="true"></i>Read More</a>
+    </div>
+</div>

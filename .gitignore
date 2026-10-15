@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+!.env.bw
+!.env.zw
+*.log

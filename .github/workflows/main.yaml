@@ -1,0 +1,110 @@
+name: Build and deploy Pfitztronic websites
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: websites-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate and build both countries
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install dependencies
+        # Prefer the lockfile as soon as it can be generated with registry access.
+        # Direct dependencies are pinned in package.json in the meantime.
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --no-audit --no-fund
+          else
+            npm install --no-audit --no-fund
+          fi
+
+      - name: Astro and TypeScript diagnostics
+        run: npm run check
+
+      - name: Test form submission and deployment preparation
+        run: npm test
+
+      - name: Build and verify both countries
+        run: |
+          npm run build:all
+          npm run verify:all
+          npm run prepare:hosting
+
+      - name: Save the verified deployment artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: websites-${{ github.sha }}
+          path: dist/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+
+  deploy:
+    name: Deploy ${{ matrix.country }}
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        country: [bw, zw]
+    environment:
+      name: production-${{ matrix.country }}
+      url: https://pfitztronic.co.${{ matrix.country }}
+    concurrency:
+      group: production-${{ matrix.country }}
+      cancel-in-progress: false
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION || 'af-south-1' }}
+      AWS_PAGER: ''
+    steps:
+      - name: Check out deployment scripts
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Download the verified build
+        uses: actions/download-artifact@v4
+        with:
+          name: websites-${{ github.sha }}
+          path: dist/
+
+      - name: Check contact endpoint preflight without sending email
+        run: npm run check:contact
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Upload site and wait for CloudFront refresh
+        run: node scripts/deploy.mjs "${{ matrix.country }}" --execute
+
+      - name: Verify the live release and URLs
+        run: node scripts/smoke-deployment.mjs "${{ matrix.country }}"

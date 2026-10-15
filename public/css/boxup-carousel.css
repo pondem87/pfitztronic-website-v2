@@ -1,0 +1,306 @@
+/*** Hero Header ***/
+.header-carousel .owl-stage-outer,
+.header-carousel .owl-stage-outer * {
+    height: 100%;
+}
+
+.header-carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header-carousel .owl-item.active img,
+.full-header-carousel .owl-item.active img,
+.hero-header-img img {
+    animation: carouselImageZoom 10s ease-in-out infinite;
+}
+
+@keyframes carouselImageZoom {
+    0% {
+        transform: scale(1) translate(-8px, 6px);
+    }
+
+    25% {
+        transform: scale(1.08) translate(6px, -6px);
+    }
+
+    50% {
+        transform: scale(1.15) translate(-5px, 5px);
+    }
+
+    75% {
+        transform: scale(1.08) translate(6px, -6px);
+    }
+
+    100% {
+        transform: scale(1) translate(-8px, 6px);
+    }
+}
+
+.header-carousel::after,
+.full-header-carousel::after {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: 0;
+    width: 184px;
+    height: 119px;
+    border-radius: 15px 0 0 0;
+    background: var(--bs-light);
+}
+
+.header-carousel .owl-nav,
+.full-header-carousel .owl-dots {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 160px;
+    height: 95px;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+    border-radius: 15px;
+    background: var(--bs-white);
+    z-index: 1;
+}
+
+.full-header-carousel .owl-dots {
+    align-items: center;
+    justify-content: center;
+}
+
+.header-carousel .owl-nav .owl-prev,
+.header-carousel .owl-nav .owl-next {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    border-radius: 45px;
+    color: var(--bs-white);
+    background: var(--bs-primary);
+}
+
+.header-carousel .owl-nav::before,
+.header-carousel .owl-nav::after,
+.full-header-carousel .owl-dots::before,
+.full-header-carousel .owl-dots::after {
+    position: absolute;
+    content: "";
+    top: -39px;
+    right: 0;
+    width: 15px;
+    height: 15px;
+    background-color: var(--bs-light);
+    mask: url(../img/corner-shape.svg) no-repeat;
+    mask-size: cover;
+    -webkit-mask: url(../img/corner-shape.svg) no-repeat;
+    -webkit-mask-size: cover;
+}
+
+.header-carousel .owl-nav::after,
+.full-header-carousel .owl-dots::after {
+    top: auto;
+    bottom: 0;
+    right: auto;
+    left: -39px;
+}
+
+.full-header-carousel .owl-carousel-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    background: rgba(9, 30, 62, .5);
+}
+
+@media (max-width: 768px) {
+    .full-header-carousel .owl-carousel-item {
+        position: relative;
+        min-height: 500px;
+    }
+
+    .full-header-carousel .owl-carousel-item img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .full-header-carousel .owl-carousel-item p {
+        font-size: 16px !important;
+    }
+}
+
+.full-header-carousel .owl-dots .owl-dot {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    margin: 5px 0;
+    border-radius: 45px;
+    transition: .5s;
+}
+
+.full-header-carousel .owl-dots .owl-dot.active {
+    width: 45px;
+    height: 45px;
+}
+
+.full-header-carousel .owl-dots .owl-dot img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 2px;
+    border-radius: 45px;
+    transition: .5s;
+}
+
+.page-header img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    animation: aniHeaderImg 30s ease-in-out infinite;
+}
+
+@keyframes aniHeaderImg {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.page-header::before {
+    position: absolute;
+    content: "";
+    inset: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 15px;
+    background: rgba(9, 30, 62, .9);
+    z-index: -1;
+}
+
+.page-header .breadcrumb::before,
+.page-header .breadcrumb::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: -39px;
+    width: 15px;
+    height: 15px;
+    background-color: var(--bs-light);
+    mask: url(../img/corner-shape.svg) no-repeat;
+    mask-size: cover;
+    -webkit-mask: url(../img/corner-shape.svg) no-repeat;
+    -webkit-mask-size: cover;
+}
+
+.page-header .breadcrumb::after {
+    left: auto;
+    right: -39px;
+    transform: rotate(90deg)
+}
+
+.page-header .breadcrumb.bg-dark::before,
+.page-header .breadcrumb.bg-dark::after {
+    background-color: #06152B;
+}
+
+
+/*** About ***/
+.about .review-img::before,
+.about .review-img::after {
+    position: absolute;
+    content: "";
+    top: -15px;
+    left: 1.5rem;
+    width: 15px;
+    height: 15px;
+    background-color: var(--bs-white);
+    mask: url(../img/corner-shape.svg) no-repeat;
+    mask-size: cover;
+    -webkit-mask: url(../img/corner-shape.svg) no-repeat;
+    -webkit-mask-size: cover;
+    transform: rotate(90deg);
+}
+
+.about .review-img::after {
+    top: auto;
+    left: auto;
+    bottom: 1.5rem;
+    right: -15px;
+}
+
+.about.bg-dark .review-img::before,
+.about.bg-dark .review-img::after {
+    background-color: var(--bs-dark);
+}
+
+.about .review-img img,
+.about .review-img .btn-square {
+    width: 50px;
+    height: 50px;
+}
+
+@media (max-width: 991.98px) {
+    .about .col-lg-4 .border {
+        border-left-color:  transparent !important;
+        border-right-color:  transparent !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .about .col-lg-4 .border {
+        border-top-color:  transparent !important;
+        border-bottom-color:  transparent !important;
+    }
+}
+
+
+/*** Feature ***/
+.feature .feature-img img {
+    min-height: 500px;
+    object-fit: cover;
+    animation: aniFeatureImg 10s ease-in-out infinite;
+}
+
+@keyframes aniFeatureImg {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.feature .feature-img .position-absolute {
+    inset: 1.5rem;
+    background: rgba(9, 30, 62, .9);
+}
+
+.feature .feature-item {
+    background: rgba(0, 0, 0, .3);
+}
+
+

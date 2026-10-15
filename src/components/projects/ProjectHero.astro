@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props {
+  slides: { image: ImageMetadata; alt: string }[];
+  label: string;
+  eyebrow: string;
+  title: string[];
+  description: string;
+  contactHref: string;
+  exploreHref: string;
+}
+const { slides, label, eyebrow, title, description, contactHref, exploreHref } = Astro.props;
+---
+<!-- Boxup Minimal's carousel markup; initialized by the existing template script. -->
+<div class="owl-carousel full-header-carousel position-relative rounded overflow-hidden" aria-label={label}>
+  {slides.map((slide, index) => (
+    <div class="owl-carousel-item position-relative" data-dot={`<img src='${slide.image.src}' alt='Show slide ${index + 1}'>`}>
+      <Image class="img-fluid" src={slide.image} alt={slide.alt} widths={[640, 960, 1366]} sizes="100vw" format="webp" quality={85} loading="eager" fetchpriority={index === 0 ? 'high' : 'low'} />
+      <div class="owl-carousel-inner">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-10 col-lg-8 text-center">
+              <p class="font-lora fs-5 text-white">{eyebrow}</p>
+              {index === 0
+                ? <h1 class="display-1 text-white mb-4">{title.map((line, i) => <>{i > 0 && <br />}{line}</>)}</h1>
+                : <h2 class="display-1 text-white mb-4">{title.map((line, i) => <>{i > 0 && <br />}{line}</>)}</h2>}
+              <p class="fs-5 text-white mb-4 pb-2">{description}</p>
+              <a class="btn btn-primary rounded-pill px-4 py-2 me-3" href={contactHref}>Discuss your project</a>
+              <a class="btn btn-light rounded-pill px-4 py-2" href={exploreHref}>Explore the solution</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>

@@ -1,0 +1,121 @@
+---
+import ProjectHero from './ProjectHero.astro';
+import EquipmentCard from './EquipmentCard.astro';
+import { siteConfig } from '../../config';
+import heroOne from '../../../public/img/projects/home-automation/hero_image_1_home_automation.jpg';
+import heroTwo from '../../../public/img/projects/home-automation/hero_image_2_home_automation.jpg';
+import pianoSwitch from '../../../public/img/projects/home-automation/gold_piano_smart_switch.png';
+import concealedSwitch from '../../../public/img/projects/home-automation/concealed_smart_wireless_switches.jpg';
+import gateway from '../../../public/img/projects/home-automation/matter_wired_gateway.png';
+import panel from '../../../public/img/projects/home-automation/wall_mounted_touch_control_panel.jpg';
+import semiLock from '../../../public/img/projects/home-automation/smart_door_lock_semiautomatic.jpg';
+import autoLock from '../../../public/img/projects/home-automation/fully_automatic_door_lock_facial_recog.jpg';
+import speaker from '../../../public/img/projects/home-automation/smart_speaker_ceiling_wifi_bluetooth.jpg';
+
+const slides = [
+  { image: heroOne, alt: 'Smart home accessories arranged around a phone with illustrated connections' },
+  { image: heroTwo, alt: 'A collection of smart home accessories including a camera, plug, sensors and light bulb' },
+];
+const accessories = [
+  { name: 'Piano-style smart switches', category: 'Lighting & switching', image: pianoSwitch, alt: 'Gold piano-style smart switch', description: 'Bring everyday lighting controls into your smart home with switches selected to complement your rooms and installation.' },
+  { name: 'Concealed wireless switches', category: 'Lighting & switching', image: concealedSwitch, alt: 'Concealed smart wireless switch modules', description: 'Add discreet switching to a compatible installation. We assess the existing wiring and available space when planning an upgrade.' },
+  { name: 'Matter wired gateway', category: 'System coordination', image: gateway, alt: 'Matter wired gateway for a smart home system', description: 'Connect supported accessories through a gateway selected for your system. We check device compatibility as part of the design.' },
+  { name: 'Wall-mounted touch panel', category: 'Everyday control', image: panel, alt: 'Wall-mounted smart home touch control panel', description: 'Give your household a central place to operate supported devices and scenes, arranged around the way you use your home.' },
+  { name: 'Semi-automatic smart door lock', category: 'Home access', image: semiLock, alt: 'Semi-automatic smart door lock', description: 'Upgrade home access with a smart lock selected to suit your door and preferred way of entering the house.' },
+  { name: 'Automatic lock with facial recognition', category: 'Home access', image: autoLock, alt: 'Fully automatic smart door lock with facial recognition', description: 'Explore an automatic door lock with facial recognition, with installation and access settings planned for your household.' },
+  { name: 'Wi-Fi & Bluetooth ceiling speaker', category: 'Home audio', image: speaker, alt: 'Smart ceiling speaker with Wi-Fi and Bluetooth connectivity', description: 'Integrate ceiling audio into your living spaces, with speaker placement and connectivity considered alongside the rest of the system.' },
+];
+const steps = [
+  { title: 'Understand your home', text: 'Tell us about your rooms, daily routines and priorities. We assess the existing installation and what you want to achieve.' },
+  { title: 'Design the system', text: 'We select compatible accessories and plan controls, connectivity and scenes around an agreed scope.' },
+  { title: 'Supply & install', text: 'We supply the chosen accessories, install and configure them, and bring the agreed functions together.' },
+  { title: 'Test & hand over', text: 'We test the coordinated system and walk you through everyday controls, scenes and household access settings.' },
+];
+---
+<div class="home-automation rounded mt-4">
+  <nav class="container py-4 d-flex gap-3" aria-label="Breadcrumb">
+    <a href="/">Home</a><span aria-hidden="true">/</span>
+    <a href="/projects/">Projects</a><span aria-hidden="true">/</span>
+    <span aria-current="page">Home Automation</span>
+  </nav>
+
+  <ProjectHero
+    {slides}
+    label="Home automation accessories"
+    eyebrow="Home Automation by Pfitztronic"
+    title={['Your home.', 'Working together.']}
+    description="Smart home accessories and complete coordinated installations, designed around the way you live."
+    contactHref="#home-contact"
+    exploreHref="#home-solution"
+  />
+
+  <section id="home-solution" class="container py-5">
+    <div class="row g-5 py-lg-4">
+      <div class="col-lg-5">
+        <p class="font-lora fs-5 text-primary">A connected home</p>
+        <h2 class="display-5">From individual accessories to a complete system.</h2>
+      </div>
+      <div class="col-lg-7">
+        <p class="fs-5">Pfitztronic supplies smart home accessories and installs full coordinated systems for homeowners. We bring lighting, access, audio and controls together around your household's needs.</p>
+        <div class="row g-4 mt-2">
+          <div class="col-md-6"><h3 class="h4">Accessories for your home</h3><p>Choose switches, gateways, touch panels, smart locks and ceiling speakers. We help you select accessories that suit your intended setup.</p></div>
+          <div class="col-md-6"><h3 class="h4">A coordinated installation</h3><p>Let us plan, supply, install and configure the system as a whole, with compatible devices and controls that work together.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light py-5" aria-labelledby="accessories-title">
+    <div class="container py-lg-4">
+      <p class="font-lora fs-5 text-primary">Smart home accessories</p>
+      <h2 id="accessories-title" class="display-5">The building blocks of your home.</h2>
+      <p class="mb-5">Explore the accessories we can supply and integrate. The final selection depends on your home, preferred controls and device compatibility.</p>
+      <div class="row g-5">
+        {accessories.map((accessory) => <div class="col-md-6 col-xl-4"><EquipmentCard {...accessory} /></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-5" aria-labelledby="routines-title">
+    <div class="py-lg-4">
+      <p class="font-lora fs-5 text-primary">Designed around daily life</p>
+      <h2 id="routines-title" class="display-5 mb-4">Simple controls. Familiar routines.</h2>
+      <p class="mb-5">We can configure scenes with compatible devices to suit the moments that matter to you.</p>
+      <div class="row g-4">
+        <div class="col-md-4"><div class="routine h-100"><h3 class="h4">Arriving home</h3><p class="mb-0">Plan convenient entry and welcoming lighting, with access and lighting controls chosen for your household.</p></div></div>
+        <div class="col-md-4"><div class="routine h-100"><h3 class="h4">Settling in</h3><p class="mb-0">Bring supported lighting and audio into a scene for relaxing or entertaining, operated from your preferred controls.</p></div></div>
+        <div class="col-md-4"><div class="routine h-100"><h3 class="h4">Turning in</h3><p class="mb-0">Group selected lights into a bedtime scene so you can finish the day with fewer individual switches to manage.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-dark text-white py-5" aria-labelledby="installation-title">
+    <div class="container py-lg-4">
+      <p class="font-lora fs-5 text-primary">From planning to everyday use</p>
+      <h2 id="installation-title" class="display-5 text-white mb-5">Your installation, step by step.</h2>
+      <ol class="row g-4 list-unstyled mb-0">
+        {steps.map((step, index) => <li class="col-sm-6 col-xl-3"><span class="text-primary fs-3">{String(index + 1).padStart(2, '0')}</span><h3 class="h4 text-white mt-3">{step.title}</h3><p class="text-white-50 mb-0">{step.text}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section id="home-contact" class="container text-center py-5">
+    <div class="py-lg-4 mx-auto contact-copy">
+      <p class="font-lora fs-5 text-primary">Let's plan your smart home</p>
+      <h2 class="display-5">What would you like your home to do?</h2>
+      <p class="my-4">Whether you need a few accessories or a complete installation, tell us about your home and the functions you want to bring together.</p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a class="btn btn-primary rounded-pill px-4 py-3" href="/contact/">Discuss your home</a>
+        <a class="btn btn-outline-primary rounded-pill px-4 py-3" href={`mailto:${siteConfig.email}?subject=${encodeURIComponent('Home automation enquiry')}`}>Email about home automation</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .home-automation { background: var(--bs-white); }
+  section[id] { scroll-margin-top: 120px; }
+  .routine { padding: 1.75rem; border-top: 2px solid var(--bs-primary); background: var(--bs-light); border-radius: .5rem; }
+  .contact-copy { max-width: 760px; }
+  nav { flex-wrap: wrap; }
+</style>

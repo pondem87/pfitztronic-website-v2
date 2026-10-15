@@ -1,0 +1,66 @@
+---
+import { getServices, serviceUrl } from '../../utils/services';
+import { siteConfig } from '../../config';
+const services = await getServices();
+const normalizePath = (path: string) => path.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+const path = normalizePath(Astro.url.pathname);
+const isActive = (href: string) => href === '/' ? path === '/' : path === normalizePath(href) || path.startsWith(href);
+---
+<nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white rounded py-3 px-4 wow fadeInUp" data-wow-delay="0.1s">
+    <a href="/" class="navbar-brand d-flex align-items-center gap-2" aria-label="Pfitztronic home">
+        <img class="brand-icon" src="/pfitz-icon.png" width="40" height="40" alt="">
+        <span class="brand-name m-0 p-0">Pfitztronic</span>
+    </a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav mx-auto bg-light rounded p-3 py-lg-0">
+            <a href="/" class:list={["nav-item nav-link", { active: isActive("/") }]} aria-current={isActive("/") ? "page" : undefined}>Home</a>
+            <a href="/about/" class:list={["nav-item nav-link", { active: isActive("/about/") }]} aria-current={isActive("/about/") ? "page" : undefined}>About</a>
+            <div class="nav-item dropdown services-dropdown">
+                <button type="button" id="servicesDropdown" class:list={["nav-link dropdown-toggle services-toggle", { active: isActive('/services/') }]} data-bs-toggle="dropdown" aria-expanded="false" aria-controls="servicesMenu">Services</button>
+                <div id="servicesMenu" class="dropdown-menu bg-light p-0" aria-labelledby="servicesDropdown">
+                    <a href="/services/" class:list={["dropdown-item", { active: path === '/services' }]} aria-current={path === '/services' ? 'page' : undefined}>All services</a>
+                    <div class="dropdown-divider m-0"></div>
+                    {services.map((service) => (
+                        <a href={serviceUrl(service)} class:list={["dropdown-item", { active: path === normalizePath(serviceUrl(service)) }]} aria-current={path === normalizePath(serviceUrl(service)) ? 'page' : undefined}>{service.data.title}</a>
+                    ))}
+                </div>
+            </div>
+            <a href="/blog/" class:list={["nav-item nav-link", { active: isActive("/blog/") }]} aria-current={isActive("/blog/") ? "page" : undefined}>Blog</a>
+            <a href="/projects/" class:list={["nav-item nav-link", { active: isActive("/projects/") }]} aria-current={isActive("/projects/") ? "page" : undefined}>Projects</a>
+            <a href="/contact/" class:list={["nav-item nav-link", { active: isActive("/contact/") }]} aria-current={isActive("/contact/") ? "page" : undefined}>Contact</a>
+        </div>
+    </div>
+    <div class="d-none d-lg-flex ms-auto">
+        <a class="btn btn-square btn-primary ms-2" href={siteConfig.xUrl} target="_blank" rel="noopener noreferrer" aria-label="Pfitztronic on X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+        <a class="btn btn-square btn-primary ms-2" href={siteConfig.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Pfitztronic on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+        <a class="btn btn-square btn-primary ms-2" href={siteConfig.linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="Pfitztronic on LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+    </div>
+</nav>
+
+<style>
+    .navbar-brand { display: flex !important; align-items: center !important; }
+    .brand-icon { display: block; width: 40px; height: 40px; object-fit: contain; flex: 0 0 40px; }
+    .brand-name { 
+        display: block;
+        font-family:sans-serif;
+        font-size: clamp(1.2rem, 2.5vw, 2rem);
+        font-weight: 600;
+        line-height: 1;
+        color: var(--bs-primary);
+    }
+    .services-toggle { border: 0; background: transparent; text-align: left; }
+    .services-toggle:focus-visible { outline: 2px solid var(--bs-primary); outline-offset: -2px; }
+    .services-dropdown .dropdown-menu { width: min(25rem, calc(100vw - 6rem)); max-height: 70vh; overflow-y: auto; }
+    .services-dropdown .dropdown-item { white-space: normal; overflow-wrap: anywhere; padding: .65rem 1rem; }
+    /* Boxup's desktop hover styles otherwise conceal a keyboard-opened menu. */
+    .navbar .services-dropdown .dropdown-menu.show { top: 100%; opacity: 1; visibility: visible; }
+    @media (min-width: 992px) {
+        .navbar .services-dropdown .dropdown-menu { left: 0; right: auto; }
+    }
+    @media (max-width: 991.98px) {
+        .services-dropdown .dropdown-menu { width: 100%; }
+    }
+</style>

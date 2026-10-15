@@ -1,0 +1,15 @@
+---
+import type { Feature } from '../../data/features';
+interface Props { item: Feature; index?: number; dark?: boolean; }
+const { item, index = 0, dark = false } = Astro.props;
+const delay = `${((index % 2) * 0.2 + 0.1).toFixed(1)}s`;
+---
+<div class="col-md-6 wow fadeIn" data-wow-delay={delay}>
+    <div class:list={["rounded p-4 h-100", dark ? "bg-black" : "bg-light"]}>
+        <div class="btn-lg-square bg-primary rounded-circle mb-4">
+            <i class={item.icon}></i>
+        </div>
+        <h4 class:list={["mb-3", { "text-white": dark }]}>{item.title}</h4>
+        <p class:list={["mb-0", { "text-white": dark }]}>{item.description}</p>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import AboutSection from '../../components/about/AboutSection.astro';
+import FeaturesSection from '../../components/features/FeaturesSection.astro';
+import { approachFeatures } from '../../data/approach';
+---
+<PageLayout title="About" heroImage="/img/beautiful_people.jpg">
+  <AboutSection />
+  <FeaturesSection
+    dark
+    eyebrow="Our Approach"
+    title="Business Clarity Before Technology"
+    image="/img/hands-put-together.jpg"
+    imageAlt="A team bringing their hands together to show collaboration"
+    items={approachFeatures}
+  />
+</PageLayout>

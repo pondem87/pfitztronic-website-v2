@@ -1,0 +1,8 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import TeamSection from '../../components/team/TeamSection.astro';
+import { members } from '../../data/team';
+---
+<PageLayout title="Our Team">
+  <TeamSection items={[...members, ...members]} />
+</PageLayout>

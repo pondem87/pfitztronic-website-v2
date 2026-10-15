@@ -1,0 +1,21 @@
+---
+import ProjectHero from './ProjectHero.astro';
+import heroOne from '../../../public/img/projects/iot-hub/iot-hub-hero-img-1.png';
+import heroTwo from '../../../public/img/projects/iot-hub/iot-hub-hero-img-2.png';
+import heroThree from '../../../public/img/projects/iot-hub/iot-hub-hero-img-3.png';
+
+const slides = [
+  { image: heroOne, alt: 'Wiring and connected equipment inside an industrial control cabinet' },
+  { image: heroTwo, alt: 'Industrial network connections and power supply in a control panel' },
+  { image: heroThree, alt: 'Close-up of a digital interface with controls and signal graphs' },
+];
+---
+<ProjectHero
+  {slides}
+  label="IoT Hub in the field"
+  eyebrow="IoT Hub by Pfitztronic"
+  title={['Your equipment.', 'Connected.']}
+  description="Live telemetry, analytics and control for water systems and industrial equipment. From the field to your phone."
+  contactHref="#iot-contact"
+  exploreHref="#iot-solution"
+/>
